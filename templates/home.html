@@ -1,0 +1,56 @@
+{% extends 'base.html' %} 
+{% block title %} 
+<title> Home </title> 
+{% endblock %} 
+
+{% block content %} 
+<div class = "container mt-3">
+    <h1>Topics</h1>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+      {% for topic in topics %}
+        <div class="col">
+          <div class="card h-100" style="width:50%">
+            <img src="{{ topic.image.url }}" class="card-img-top" alt="">
+            <div class="card-body">
+              <h5 class="card-title"></a>{{topic.name}}</h5>
+            </div>
+            <div class="card-footer">
+              <button class="btn btn-primary" data-bs-target="#exampleModalToggle1" data-bs-toggle="modal">Start</button>
+            </div>
+            {% for question in topic.questions.all %}
+            <div class="modal fade" id="exampleModalToggle{{forloop.counter}}" aria-hidden="true" aria-labelledby="exampleModalToggleLabe{{forloop.counter}}" tabindex="-1">
+              <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalToggleLabe{{forloop.counter}}">{{ question.topic.name }}</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    {{question.question}}
+                    <form method="POST">
+                      {% csrf_token %}
+                      {% for choice in question.choices.all %}
+                      <input type="hidden" name = "choice_id" value = "{{ choice.id }}">
+                      <input type="radio" name="choice" value="{{choice.choice}}"> {{ choice.choice }}<br>
+                      {% endfor %}
+                      <button type="submit" class="btn btn-primary">Send</button>
+                    </form>
+                  </div>
+                  <div class="modal-footer">
+                    <button class="btn btn-primary" data-bs-target="#exampleModalToggle{{forloop.counter | add:'-1'}}" data-bs-toggle="modal">Previous</button>
+                    <button class="btn btn-primary" data-bs-target="#exampleModalToggle{{forloop.counter | add:'1'}}" data-bs-toggle="modal">Next</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+</div>
+
+
+<!-- Modal -->
+
+{% endblock %}
