@@ -23,6 +23,9 @@ def check_validation(password):
 
 
 class SignupView(View):
+    def get(self,request,*args,**kwargs):
+        return render(request,'signup.html')
+    
     def post(self,request,*args,**kwargs):
         username = request.POST.get("username")
         password = request.POST.get("password")
@@ -49,6 +52,10 @@ class SignupView(View):
             return redirect("signup")       
 #--------------------------------------------------------------------------
 class LoginView(View):
+    def get(self,request,*args,**kwargs):
+
+        return render(request,'login.html')
+    
     def post(self,request,*args,**kwargs):
         username = request.POST.get("username")
         password = request.POST.get("password")
@@ -67,11 +74,13 @@ class LoginView(View):
             return redirect("login")
 #--------------------------------------------------------------------------------
 class LogoutView(View):
-    def post(self,request,*args,**kwargs):
+    def get(self,request,*args,**kwargs):
         logout(request)
         return redirect("login")
 #--------------------------------------------------------------------------------
 class ChangePasswordView(View):
+    def get(self,request,*args,**kwargs):
+        return render(request,'changepassword.html')
     def post(self,request,*args,**kwargs):
         if request.user.is_authenticated:
             raise Http404

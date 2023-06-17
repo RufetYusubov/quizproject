@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
 	<img src="https://unsplash.it/30/30" class="mr-2">
-	<a class="navbar-brand text-light" href="{% url 'home' %}">Navbar</a>
+	<a class="navbar-brand text-light" href="{% url 'home' %}">Home</a>
 	<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbar-body" aria-expanded="false" aria-label="Toggle navigation">
 		<span class="navbar-toggler-icon"></span>
 	</button>
@@ -18,20 +18,10 @@
 				<a class="nav-link" href="{% url 'signup' %}">Signup</a>
 			</li>
 			{% endif %}
-			<li class="nav-item dropdown">
-				<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
-				<div class="dropdown-menu">
-					<a class="dropdown-item" href="#">Menu Item</a>
-					<a class="dropdown-item" href="#">Menu Item</a>
-					<a class="dropdown-item" href="#">Menu Item</a>
-					<div class="dropdown-divider"></div>
-					<a class="dropdown-item" href="#">Menu Item</a>
-				</div>
-			</li>
 		</ul>
 		<form class="d-flex" role="search">
-			<input class="form-control ml-sm-2" name ="search" type="search" placeholder="Search" aria-label="Search">
-			<button class="btn btn-primary text-light my-2 my-sm-0" type="submit">Search</button>
+			<input class="form-control me-2" name ="search" type="search" placeholder="Search" aria-label="Search">
+			<button class="btn btn-primary text-light" type="submit">Search</button>
 		</form>
 	</div>
 </nav>
