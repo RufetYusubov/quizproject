@@ -1,0 +1,25 @@
+{% extends 'base.html' %} 
+{% block title %} 
+<title> Home </title> 
+{% endblock %} 
+
+{% block content %} 
+<center>
+<div class="container">
+    <div class="card mt-5" style="width: 20rem;">
+        <div class="card-body">
+        <h5 class="card-title">{{ question.topic.name }}</h5>
+        <h6 class="card-subtitle mb-2 text-body-secondary">Card subtitle</h6>
+        <p class="card-text">{{ question.question }}</p>
+        {% if previous is not None %}
+        <a href="{% url 'quiz' question.topic_id previous %}" class="card-link">Previous</a>
+        {% endif %} 
+        {% if next is not None %}
+        <a href="{% url 'quiz' question.topic_id next %}" class="card-link">Next</a>
+        {% endif %}
+        </div>
+    </div>
+</div>
+</center>
+
+{% endblock %}
